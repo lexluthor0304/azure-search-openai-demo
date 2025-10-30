@@ -1,6 +1,6 @@
 {
-    "pageTitle": "Azure OpenAI + AI Search",
-    "headerTitle": "Azure OpenAI + AI Search",
+    "pageTitle": "音家AI",
+    "headerTitle": "音家AI",
     "chat": "チャット",
     "qa": "一問一答",
     "login": "ログイン",
@@ -34,13 +34,13 @@
     },
     "developerSettings": "高度な設定",
 
-    "chatEmptyStateTitle": "データを用いてチャットを行います",
+    "chatEmptyStateTitle": "音家AIへようこそ！",
     "chatEmptyStateSubtitle": "ご自由にお問い合わせいただくか、もしくは下記のサンプルをお試しください",
     "defaultExamples": {
-        "1": "私が契約中の Northwind Health Plus の標準プランには何が含まれ、何が含まれないのですか？",
-        "2": "パフォーマンス・レビューで何を行いますか？",
-        "3": "プロダクトマネージャーの職務内容について教えてください。",
-        "placeholder": "新しい質問を入力してください (例：私の契約プランは年1回の眼科検診もカバーしていますか？)"
+        "1": "LASER SCAN 800は人の目に入っても問題はありませんか？",
+        "2": "JW-03 の伝送距離は何mまでですか？",
+        "3": "JBLの305Pと306Pの違いを教えてください。",
+        "placeholder": "新しい質問を入力してください (例：JBLの104BTが勝手に動かなくなります。対処方法を教えてください。)"
     },
     "askTitle": "データを利用した問い合わせ",
     "multimodalExamples": {

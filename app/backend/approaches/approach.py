@@ -182,6 +182,12 @@ class Approach(ABC):
         self.global_blob_manager = global_blob_manager
         self.user_blob_manager = user_blob_manager
 
+    def _get_content_field_name(self) -> str:
+        return getattr(self, "content_field", "content")
+
+    def _get_sourcepage_field_name(self) -> str:
+        return getattr(self, "sourcepage_field", "sourcepage")
+
     def build_filter(self, overrides: dict[str, Any]) -> Optional[str]:
         include_category = overrides.get("include_category")
         exclude_category = overrides.get("exclude_category")
@@ -236,12 +242,14 @@ class Approach(ABC):
         documents: list[Document] = []
         async for page in results.by_page():
             async for document in page:
+                content_field = self._get_content_field_name()
+                sourcepage_field = self._get_sourcepage_field_name()
                 documents.append(
                     Document(
                         id=document.get("id"),
-                        content=document.get("content"),
+                        content=document.get(content_field) or document.get("content"),
                         category=document.get("category"),
-                        sourcepage=document.get("sourcepage"),
+                        sourcepage=document.get(sourcepage_field) or document.get("sourcepage"),
                         sourcefile=document.get("sourcefile"),
                         oids=document.get("oids"),
                         groups=document.get("groups"),
@@ -322,13 +330,15 @@ class Approach(ABC):
         # Create documents from reference source data
         for ref in refs:
             if ref.source_data and ref.doc_key:
+                content_field = self._get_content_field_name()
+                sourcepage_field = self._get_sourcepage_field_name()
                 # Note that ref.doc_key is the same as source_data["id"]
                 documents.append(
                     Document(
                         id=ref.doc_key,
-                        content=ref.source_data.get("content"),
+                        content=ref.source_data.get(content_field) or ref.source_data.get("content"),
                         category=ref.source_data.get("category"),
-                        sourcepage=ref.source_data.get("sourcepage"),
+                        sourcepage=ref.source_data.get(sourcepage_field) or ref.source_data.get("sourcepage"),
                         sourcefile=ref.source_data.get("sourcefile"),
                         oids=ref.source_data.get("oids"),
                         groups=ref.source_data.get("groups"),
